@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="expires" content="-1">
+    <link rel="shortcut icon" href="dist/img/favicon.png">
+    <link rel="stylesheet" href="dist/style.min.css">
+    <title>Déconnexion</title>
+</head>
+
+<body>
+    <script language="JavaScript">
+        function openLogin() {
+            if (window.name != 'hotspot_logout') return true;
+            open('$(link-login)', '_blank', '');
+            window.close();
+            return false;
+        }
+    </script>
+    <header class="header">
+        <h1 class="header-title">Déconnexion</h1>
+    </header>
+    <div class="container">
+        <div class="card-info">
+            <div class="card-header">
+                <h1 class="card-title">Récapitulatif</h1>
+            </div>
+            <div class="card-body">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <span>Utilisateur</span>
+                        <span class="aside badge badge-black">$(username)</span>
+                    </li>
+                    <li class="list-group-item">
+                        <span>Temps utilisé</span>
+                        <span class="aside badge badge-red">$(uptime)</span>
+                    </li>
+                    $(if session-time-left)
+                    <li class="list-group-item">
+                        <span>Temps restant</span>
+                        <span class="aside badge badge-blue">$(session-time-left)</span>
+                    </li>
+                    $(else)
+                    <li class="list-group-item">
+                        <span>Temps restant</span>
+                        <span class="aside badge badge-blue">indéfini</span>
+                    </li>
+                    $(endif)
+                    <li class="list-group-item">
+                        <span>Upload</span>
+                        <span class="aside badge badge-yellow">$(bytes-in-nice)</span>
+                    </li>
+                    <li class="list-group-item">
+                        <span>Download</span>
+                        <span class="aside badge badge-green">$(bytes-out-nice)</span>
+                    </li>
+                </ul>
+                <form action="$(link-login)" name="login" onSubmit="return openLogin()">
+                    <button class="btn btn-block btn-blue logout-btn" type="submit">Se reconnecter</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <p>Copyright &#9426; codehouse 2021</p>
+    </footer>
+</body>
+
+</html>

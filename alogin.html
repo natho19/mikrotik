@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="2; url=http://zonewifi.tg/status">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="expires" content="-1">
+    <link rel="shortcut icon" href="dist/img/favicon.png">
+    <link rel="stylesheet" href="dist/style.min.css">
+    <title>Redirection</title>
+    <script language="JavaScript">
+        function startClock() {
+            $(if popup == 'true')
+                open('$(link-status)', 'hotspot_status', 'toolbar=0,location=0,directories=0,status=0,menubars=0,resizable=1,width=350,height=250');
+            $(endif)
+            location.href = 'http://zonewifi.tg/status';
+        }
+    </script>
+</head>
+
+<body onLoad="startClock()">
+    <header class="header">
+        <h1 class="header-title">Redirection</h1>
+    </header>
+    <div class="container">
+        <div class="redirection-message">
+            <h1>Vous êtes bien connecté !</h1>
+            <p>Si rien ne s'affiche, veuillez <a href="http://zonewifi.tg/status">cliquez ici</a></p>
+        </div>
+    </div>
+    <footer class="footer">
+        <p>Copyright &#9426; codehouse 2021</p>
+    </footer>
+</body>
+
+</html>

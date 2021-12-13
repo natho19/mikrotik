@@ -1,0 +1,161 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    $(if refresh-timeout)
+	<meta http-equiv="refresh" content="$(refresh-timeout-secs)">
+	$(endif)
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="expires" content="-1">
+    <link rel="shortcut icon" href="dist/img/favicon.png">
+    <link rel="stylesheet" href="dist/style.min.css">
+    <title>Statut</title>
+    <script language="JavaScript">
+		$(if advert-pending == 'yes')
+		var popup = '';
+		function focusAdvert() {
+			if (window.focus) popup.focus();
+		}
+		function openAdvert() {
+			popup = open('$(link-advert)', 'hotspot_advert', '');
+			setTimeout("focusAdvert()", 1000);
+		}
+		$(endif)
+		function openLogout() {
+			if (window.name != 'hotspot_status') return true;
+			open('$(link-logout)', 'hotspot_logout', 'toolbar=0,location=0,directories=0,status=0,menubars=0,resizable=1,width=350,height=250');
+			window.close();
+			return false;
+		}
+	</script>
+</head>
+
+<body bottommargin="0" topmargin="0" leftmargin="0" rightmargin="0"
+$(if advert-pending == 'yes')
+onLoad="openAdvert()"
+$(endif)>
+    <header class="header">
+        <h1 class="header-title">Statut</h1>
+    </header>
+    <div class="container">
+        <div class="info">
+            <div class="card-info">
+                <div class="card-header">
+                    <h1 class="card-title">Informations de connexion</h1>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <span>Temps utilisé</span>
+                            <span class="aside badge badge-red">$(uptime)</span>
+                        </li>
+                        $(if session-time-left)
+                        <li class="list-group-item">
+                            <span>Temps restant</span>
+                            <span class="aside badge badge-blue">$(session-time-left)</span>
+                        </li>
+                        $(else)
+                        <li class="list-group-item">
+                            <span>Temps restant</span>
+                            <span class="aside badge badge-blue">indéfini</span>
+                        </li>
+                        $(endif)
+                    </ul>
+                </div>
+            </div>
+            <div class="aside-buttons">
+                <form action="$(link-logout)" name="logout" onSubmit="return openLogout()">
+                    <button type="button" class="btn-circle btn-blue" title="Rafraîchir" onClick="window.location.reload();"><img src="dist/img/icon-refresh.png" width="25px" height="25px"></button>
+                    $(if login-by-mac != 'yes')
+                    <button type="submit" class="btn-circle btn-red" title="Se déconnecter"><img src="dist/img/icon-logout.png" width="25px" height="25px"></button>
+                    $(endif)
+                    <button type="button" id="btn-modal-tarif" class="btn-circle btn-green" title="Tarifs"><img src="dist/img/icons-money.png" width="25px" height="25px"></button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <p>Copyright &#9426; codehouse 2021</p>
+    </footer>
+    <!-- Modal Tarifs -->
+    <div id="modal-tarif" class="modal">
+        <div class="modal-container">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span id="close-tarif" class="close text-green">&times;</span>
+                    <h2 class="modal-title text-green">Nos tarifs</h2>
+                </div>
+                <div class="modal-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Tickets</th>
+                                <th scope="col">Prix</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th colspan="2" scope="row" class="tr-group">Wifi</th>
+                            </tr>
+                            <tr>
+                                <th scope="row">1H</td>
+                                <td>100 FCFA</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">3H</td>
+                                <td>200 FCFA</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">5H</td>
+                                <td>300 FCFA</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">10H</td>
+                                <td>500 FCFA</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">1 jour</td>
+                                <td>300 FCFA</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">1 semaine</td>
+                                <td>1000 FCFA</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">1 mois</td>
+                                <td>3000 FCFA</td>
+                            </tr>
+                            <tr>
+                                <th colspan="2" scope="row" class="tr-group">PC ou charger ici</th>
+                            </tr>
+                            <tr>
+                                <th scope="row">1H</td>
+                                <td>150 FCFA</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">3H</td>
+                                <td>250 FCFA</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">7H</td>
+                                <td>500 FCFA</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="btn-modal-tarif-close"
+                        class="btn-modal-close btn-modal-close-green">Fermer
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Javascript files -->
+    <script type="text/javascript" src="dist/main.min.js"></script>
+</body>
+
+</html>

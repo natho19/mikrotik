@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="expires" content="-1">
+    <link rel="shortcut icon" href="dist/img/favicon.png">
+    <link rel="stylesheet" href="dist/style.min.css">
+    <title>Connexion</title>
+</head>
+
+<body>
+    $(if chap-id)
+    <form name="sendin" action="$(link-login-only)" method="post">
+        <input type="hidden" name="username">
+        <input type="hidden" name="password">
+        <input type="hidden" name="dst" value="$(link-orig)">
+        <input type="hidden" name="popup" value="true">
+    </form>
+    <script type="text/javascript" src="dist/md5.js"></script>
+    <script type="text/javascript">
+        function doLogin() {
+            document.sendin.username.value = document.login.username.value;
+            document.sendin.password.value = hexMD5('$(chap-id)' + document.login.password.value + '$(chap-challenge)');
+            document.sendin.submit();
+            return false;
+        }
+    </script>
+    $(endif)
+    <div class="container">
+        <div class="card-form">
+            <div class="card-body">
+                <h1 class="card-title">Se connecter au WiFi</h1>
+                $(if error)
+                <div class="alert">
+                    $(error)
+                </div>
+                $(endif)
+                <form class="form-signin" name="login" action="$(link-login-only)" method="post" $(if chap-id)
+                    onSubmit="return doLogin()" $(endif)>
+                    <input type="hidden" name="dst" value="$(link-orig)">
+                    <input type="hidden" name="popup" value="true">
+                    <div class="form-group">
+                        <input name="username" type="text" value="$(username)" class="form-control" placeholder="Nom d'utilisateur" required autofocus="autofocus">
+                    </div>
+                    <div class="form-group">
+                        <input name="password" type="password" class="form-control" placeholder="Mot de passe" required>
+                    </div>
+                    <button class="btn btn-block btn-blue" type="submit">Se connecter</button>
+                </form>
+                <div class="tags-block">
+                    <a href="#" id="btn-modal-tarif" class="tag-tarif" title="Tarifs">Tarifs</a>
+                    <a href="#" id="btn-modal-contact" class="tag-contact" title="Contact">Contact</a>
+                    <a href="#" id="btn-modal-faq" class="tag-faq" title="FAQ">FAQ</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <p>Copyright &#9426; codehouse 2021</p>
+    </footer>
+    <!-- Modal Tarifs -->
+    <div id="modal-tarif" class="modal">
+        <div class="modal-container">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span id="close-tarif" class="close text-green">&times;</span>
+                    <h2 class="modal-title text-green">Nos tarifs</h2>
+                </div>
+                <div class="modal-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Tickets</th>
+                                <th scope="col">Prix</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th colspan="2" scope="row" class="tr-group">Wifi</th>
+                            </tr>
+                            <tr>
+                                <th scope="row">1H</td>
+                                <td>100 FCFA</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">3H</td>
+                                <td>200 FCFA</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">5H</td>
+                                <td>300 FCFA</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">10H</td>
+                                <td>500 FCFA</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">1 jour</td>
+                                <td>300 FCFA</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">1 semaine</td>
+                                <td>1000 FCFA</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">1 mois</td>
+                                <td>3000 FCFA</td>
+                            </tr>
+                            <tr>
+                                <th colspan="2" scope="row" class="tr-group">PC ou charger ici</th>
+                            </tr>
+                            <tr>
+                                <th scope="row">1H</td>
+                                <td>150 FCFA</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">3H</td>
+                                <td>250 FCFA</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">7H</td>
+                                <td>500 FCFA</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="btn-modal-tarif-close"
+                        class="btn-modal-close btn-modal-close-green">Fermer
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Contact -->
+    <div id="modal-contact" class="modal">
+        <div class="modal-container">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span id="close-contact" class="close text-dark-blue">&times;</span>
+                    <h2 class="modal-title text-dark-blue">Contact</h2>
+                </div>
+                <div class="modal-body contact-title">
+                    <h3 class="text-dark-blue">Adresse :</h3>
+                    <p>Nous sommes à Cacavéli sur la voie de l'école Awiya et du marché de Cacavéli, non loin de l'école
+                        Néo-Humaniste en face du bar Fafa chez Vivi</p>
+                    <h3 class="text-dark-blue">Téléphone :</h3>
+                    <p>(+228) 91 93 17 90 / 99 97 14 20 / 92 57 35 41</p>
+                    <h3 class="text-dark-blue">Email :</h3>
+                    <p>miskocito@gmail.com / alassanieninful@gmail.com</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="btn-modal-contact-close"
+                        class="btn-modal-close btn-modal-close-dark-blue">Fermer
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal FAQ -->
+    <div id="modal-faq" class="modal">
+        <div class="modal-container">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span id="close-faq" class="close text-red">&times;</span>
+                    <h2 class="modal-title text-red">FAQ</h2>
+                </div>
+                <div class="modal-body">
+                    <h2 class="text-red">Questions fréquentes :</h2>
+                    <h3>1- Comment faire si je perds mon ticket ?</h3>
+                    <p>Si le ticket se perd et que vous n'avez plus les informations, on ne pourra rien faire pour vous. Ainsi, pour prévenir la perte de ticket, il est recommandé de prendre une <strong>photo</strong> du ticket. Même s'il se perd, vous pouvez toutefois revoir les informations sur la photo. <br> Une autre astuce est <strong>d'enregistrer les informations de connexion</strong> lorsque le navigateur vous le demande. Ainsi, la prochaine fois, vous n'aurez plus à les saisir.</p>
+                    <h3>2- Quelle est la validité d'un ticket ?</h3>
+                    <p>Les tickets <strong>d'1H, 3H, 7H et 10H</strong> ont une <strong>validité de 7 jours</strong> à partir du moment de connexion. Après les 7 jours, même s'il reste des heures sur le ticket, il ne sera plus valide. <br> Les tickets <strong>d'1J</strong> ont une <strong>validité d'un jour. Après 24 heures</strong> à partir du moment de connexion, le ticket ne sera plus valide.</p>
+                    <h3>3- Comment accéder à la page de connexion</h3>
+                    <p>Pour accéder à la page de connexion, il suffit de <strong>sélectionner le WiFi </strong> (Zone-WiFi1 ou Zone-WiFi2). Un message s'affichera sur votre téléphone ou sur votre PC. Cliquez sur le message et vous serez automatiquement redirigé sur la page de connexion. <br>Vous pouvez aussi retrouver la page de connexion en cliquant sur ce lien : <a href="$(link-login)">Page de connexion</a></p>
+                    <h3>4- Et si je veux me déconnecter ?</h3>
+                    <p>Pour se déconnecter, il suffit de mettre dans la barre d'adresse de votre navigateur <strong>zonewifi.tg ou 10.0.0.1</strong> <br> Sur la page de statut, vous devez appuyer sur le <strong>bouton circulaire rouge</strong> pour vous déconnecter.</p>
+                    <h3>5- Où trouver le temps restant ?</h3>
+                    <p>Pour trouver le temps restant, il faut accéder à la page de statut en suivant le processus de l'étape précédente (Question 4). Sur la page de statut, vous pouvez voir le temps restant en <strong>bleu.</strong></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="btn-modal-faq-close"
+                        class="btn-modal-close btn-modal-close-red">Fermer
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Javascript files -->
+    <script type="text/javascript" src="dist/main.min.js"></script>
+</body>
+
+</html>

@@ -2,7 +2,7 @@
 Conception, intégration et développement des pages du mikrotik
 
 ## :information_source: Description
-Après le design de la maquette, j’ai fait l’intégration en HTML et CSS des diverses pages du mikrotik à savoir : le formulaire de connexion, la page de statut, la page de déconnexion, les informations de contact, les prix, la foire à questions…
+Après le design de la maquette, j’ai fait l’intégration en HTML et CSS des diverses pages du mikrotik à savoir : le formulaire de connexion, la page de statut, la page de déconnexion, les informations de contact, les prix, la foire à questions...
 
 ## :pencil2: Maquettage
 Pour concevoir la maquette, je suis passé par le prototypage avec Balsamiq Mockup. Ensuite j’ai donné vie aux prototypes en utilisant Adobe XD pour la conception finale.
